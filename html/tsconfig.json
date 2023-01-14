@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "react": [ "./node_modules/@types/react" ]
+    },
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "jsx": "react",
+    "strict": true,
+    "strictNullChecks": false,
+    "isolatedModules": true
+  },
+  "include": [
+    "src"
+  ]
+}
