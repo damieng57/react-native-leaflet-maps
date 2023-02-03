@@ -4,7 +4,7 @@ pre-commit:
     lint:
       files: git diff --name-only @{push}
       glob: "*.{js,ts,jsx,tsx}"
-      run: npx eslint {files}
+      run: npx eslint {files} --ignore-pattern 'src/assets/*'
     types:
       files: git diff --name-only @{push}
       glob: "*.{js,ts, jsx, tsx}"

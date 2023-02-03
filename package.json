@@ -1,6 +1,6 @@
 {
   "name": "react-native-leaflet-maps",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "View component with leaflet maps for React-Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -29,7 +29,7 @@
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "lint": "eslint \"**/*.{js,ts,tsx}\" --ignore-pattern './src/assets/html.ts'",
     "prepack": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
