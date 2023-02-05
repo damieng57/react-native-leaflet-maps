@@ -8,7 +8,7 @@ import {
   MapMarker,
 } from 'react-native-leaflet-maps';
 import { CommandButton } from './CommandButton';
-import { DEFAULT_ZOOM, DEFAULT_LOCATIONS, DEFAULT_SHAPES } from './data';
+import { DEFAULT_LOCATIONS, DEFAULT_SHAPES } from './data';
 import { styles } from './styles';
 import { LatLngObject, TAction, TState } from './types';
 
@@ -36,7 +36,7 @@ const modeManagerReducer = (state: TState, action: TAction) => {
 
 export default function App() {
   const [state, dispatch] = React.useReducer(modeManagerReducer, initialState);
-  const [zoom, setZoom] = React.useState(DEFAULT_ZOOM);
+  const [zoom, setZoom] = React.useState(15);
   const [locations, setLocations] =
     React.useState<Array<MapMarker>>(DEFAULT_LOCATIONS);
   const [coordinate, setCoordinate] = React.useState({
@@ -44,12 +44,12 @@ export default function App() {
     lng: -77.0366,
   });
 
-  const centerToCoordinate = () => {
+  const centerToCoordinate = React.useCallback(() => {
     setCoordinate({
       lat: 38.895,
       lng: -77.0366,
     });
-  };
+  }, []);
 
   const zoomIn = () => {
     setZoom(zoom + 1);
@@ -103,7 +103,7 @@ export default function App() {
         break;
 
       default:
-        console.log('App received', message);
+      // console.log('App received', message);
     }
   };
 
@@ -145,8 +145,9 @@ export default function App() {
         mapMarkers={locations}
         mapCenterPosition={coordinate}
         mapShapes={DEFAULT_SHAPES}
-        doDebug
+        doDebug={false}
         zoom={zoom}
+        zoomControl={false}
       />
 
       <View style={styles.buttonContainer}>

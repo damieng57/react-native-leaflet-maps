@@ -41,6 +41,7 @@ interface State {
   zoom: number;
   zoomIn?: number;
   zoomOut?: number;
+  zoomControl?: boolean;
 }
 
 export default class MapComponent extends Component<{}, State> {
@@ -144,7 +145,7 @@ export default class MapComponent extends Component<{}, State> {
     if (window.ReactNativeWebView) {
       // @ts-ignore
       window.ReactNativeWebView.postMessage(JSON.stringify(message));
-      console.log("sendMessage  ", JSON.stringify(message));
+      // console.log("sendMessage  ", JSON.stringify(message));
     }
   };
 
@@ -203,7 +204,8 @@ export default class MapComponent extends Component<{}, State> {
       mapShapes,
       ownPositionMarker,
       useMarkerClustering,
-      zoom
+      zoom,
+      zoomControl
     } = this.state;
     return (
       <MapComponentView
@@ -218,6 +220,7 @@ export default class MapComponent extends Component<{}, State> {
         setMapRef={this.setMapRef}
         useMarkerClustering={useMarkerClustering}
         zoom={zoom}
+        zoomControl={zoomControl}
       />
     );
   }

@@ -17,6 +17,7 @@ describe('MapComponentView', () => {
         mapShapes={[]}
         ownPositionMarker={undefined}
         useMarkerClustering={false}
+        zoomControl={false}
       />
     );
     expect(asFragment()).toMatchSnapshot();

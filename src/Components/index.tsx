@@ -43,6 +43,7 @@ export type LeafletViewProps = {
   mapCenterPosition?: LatLng;
   ownPositionMarker?: OwnPositionMarker;
   zoom?: number;
+  zoomControl?: boolean;
   doDebug?: boolean;
   androidHardwareAccelerationDisabled?: boolean;
   injectedJavaScript?: string;
@@ -60,6 +61,7 @@ const LeafletView: React.FC<LeafletViewProps> = ({
   mapCenterPosition,
   ownPositionMarker,
   zoom,
+  zoomControl,
   doDebug,
   androidHardwareAccelerationDisabled,
   injectedJavaScript,
@@ -109,6 +111,7 @@ const LeafletView: React.FC<LeafletViewProps> = ({
       };
     }
     startupMessage.zoom = zoom;
+    startupMessage.zoomControl = zoomControl;
 
     sendMessage(startupMessage);
     setInitialized(true);
@@ -122,6 +125,7 @@ const LeafletView: React.FC<LeafletViewProps> = ({
     ownPositionMarker,
     sendMessage,
     zoom,
+    zoomControl,
   ]);
 
   const handleMessage = useCallback(
@@ -198,6 +202,14 @@ const LeafletView: React.FC<LeafletViewProps> = ({
     }
     sendMessage({ zoom });
   }, [initialized, zoom, sendMessage]);
+
+  //Handle zoomControl update
+  useEffect(() => {
+    if (!initialized) {
+      return;
+    }
+    sendMessage({ zoomControl });
+  }, [initialized, zoomControl, sendMessage]);
 
   if (webViewRef === null) {
     return (
