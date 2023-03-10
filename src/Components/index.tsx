@@ -11,7 +11,13 @@ import {
   OWN_POSTION_MARKER_ID,
 } from './types';
 import { LatLng } from 'react-leaflet';
-import { NativeSyntheticEvent, StyleSheet, Text, View } from 'react-native';
+import {
+  NativeSyntheticEvent,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
 import type {
   WebViewError,
   WebViewMessageEvent,
@@ -47,6 +53,7 @@ export type LeafletViewProps = {
   doDebug?: boolean;
   androidHardwareAccelerationDisabled?: boolean;
   injectedJavaScript?: string;
+  style?: ViewStyle;
 };
 
 const LeafletView: React.FC<LeafletViewProps> = ({
@@ -65,6 +72,7 @@ const LeafletView: React.FC<LeafletViewProps> = ({
   doDebug,
   androidHardwareAccelerationDisabled,
   injectedJavaScript,
+  style,
 }) => {
   const webViewRef = useRef<WebView>(null);
   const [initialized, setInitialized] = useState(false);
@@ -221,7 +229,7 @@ const LeafletView: React.FC<LeafletViewProps> = ({
 
   return (
     <WebView
-      containerStyle={styles.container}
+      containerStyle={style || styles.container}
       ref={webViewRef}
       javaScriptEnabled={true}
       onLoadEnd={onLoadEnd}

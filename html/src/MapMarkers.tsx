@@ -56,7 +56,10 @@ export default class MapMarkers extends React.Component<MapMarkersProps> {
           </MarkerClusterGroup>
           {mapMarkers.map((mapMarker: MapMarker) => {
             if (mapMarker.id === OWN_POSTION_MARKER_ID) {
-              return <this.MapMarker mapMarker={mapMarker} />;
+              return <this.MapMarker 
+                key={mapMarker.id || Math.random().toString()}
+                mapMarker={mapMarker} 
+               />;
             } else {
               return null;
             }
@@ -67,7 +70,10 @@ export default class MapMarkers extends React.Component<MapMarkersProps> {
       return (
         <LayerGroup>
           {mapMarkers.map((mapMarker: MapMarker) => {
-            return <this.MapMarker mapMarker={mapMarker} />;
+            return <this.MapMarker 
+            mapMarker={mapMarker} 
+            key={mapMarker.id || Math.random().toString()}
+            />;
           })}
         </LayerGroup>
       );

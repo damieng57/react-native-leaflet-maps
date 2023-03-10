@@ -220,7 +220,7 @@ export default class MapComponent extends Component<{}, State> {
         setMapRef={this.setMapRef}
         useMarkerClustering={useMarkerClustering}
         zoom={zoom}
-        zoomControl={zoomControl}
+        zoomControl={zoomControl || false}
       />
     );
   }
