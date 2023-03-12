@@ -79,7 +79,7 @@ const LeafletView: React.FC<LeafletViewProps> = ({
 
   const logMessage = useCallback(
     (message: string) => {
-      if (doDebug) {
+      if (__DEV__ && doDebug) {
         console.log(message);
       }
     },
@@ -88,7 +88,7 @@ const LeafletView: React.FC<LeafletViewProps> = ({
 
   const sendMessage = useCallback(
     (payload: MapMessage) => {
-      logMessage(`sending: ${JSON.stringify(payload)}`);
+      __DEV__ && logMessage(`sending: ${JSON.stringify(payload)}`);
 
       webViewRef.current?.injectJavaScript(
         `window.postMessage(${JSON.stringify(payload)}, '*');`
@@ -144,7 +144,7 @@ const LeafletView: React.FC<LeafletViewProps> = ({
       }
 
       const message: LeafletWebViewMessage = JSON.parse(data);
-      logMessage(`received: ${JSON.stringify(message)}`);
+      __DEV__ && logMessage(`received: ${JSON.stringify(message)}`);
 
       if (message.msg === LeafletWebViewEvents.MAP_READY) {
         sendInitialMessage();

@@ -1,6 +1,6 @@
 {
   "name": "react-native-leaflet-maps",
-  "version": "0.1.4",
+  "version": "0.2.1",
   "description": "View component with leaflet maps for React-Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
